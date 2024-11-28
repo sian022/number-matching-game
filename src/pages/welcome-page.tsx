@@ -55,12 +55,12 @@ const WelcomePage = () => {
             htmlFor="maxNumber"
             className="block text-sm font-medium text-gray-700"
           >
-            Enter a number
+            Enter maximum number
           </label>
 
           <Input
             id="maxNumber"
-            placeholder="Enter a number"
+            placeholder="Enter maximum number"
             type="number"
             value={number}
             onChange={handleNumberChange}

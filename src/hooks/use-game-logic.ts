@@ -107,7 +107,7 @@ const useGameLogic = ({
     if (isGameCompleted) {
       setTimeout(() => {
         onGameComplete();
-      }, 500); // 0.5 second delay
+      }, 200);
     }
   }, [cards, onGameComplete]);
 

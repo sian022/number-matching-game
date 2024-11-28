@@ -33,7 +33,7 @@ const WelcomePage = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen w-screen bg-gradient-to-b from-secondary to-background">
+    <div className="flex justify-center items-center h-screen w-screen">
       <form
         className="flex flex-col items-center gap-4 bg-white p-10 rounded-lg shadow-md w-full max-w-md"
         onSubmit={handleStartGame}

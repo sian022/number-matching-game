@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useGameLogic } from "@/hooks/use-game-logic";
 import { useNumberStore } from "@/stores/number";
-import { useState } from "react";
+import { useCallback, useState } from "react";
 import { Navigate, useNavigate } from "react-router-dom";
 
 const GamePage = () => {
@@ -12,9 +12,13 @@ const GamePage = () => {
   const maxNumber = useNumberStore((state) => state.maxNumber);
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
+  const handleCongratulations = useCallback(() => {
+    setIsDialogOpen(true);
+  }, []);
+
   const { cards, turns, resetGame, handleCardClick } = useGameLogic({
     maxNumber,
-    onGameComplete: () => setIsDialogOpen(true),
+    onGameComplete: handleCongratulations,
   });
 
   if (!maxNumber) {

@@ -45,7 +45,7 @@ const GamePage = () => {
       />
 
       <div className="container max-w-screen-xl mx-auto px-4 py-8 h-screen flex flex-col">
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex items-center justify-between mb-6 sm:flex-row flex-col gap-4">
           <div className="flex items-center gap-4">
             <span className="text-xl font-semibold">
               Turns:
@@ -53,10 +53,16 @@ const GamePage = () => {
             </span>
           </div>
           <div className="flex gap-2">
-            <Button variant="outline" onClick={handleBackToWelcome}>
+            <Button
+              variant="outline"
+              onClick={handleBackToWelcome}
+              className="w-40"
+            >
               Back to Welcome
             </Button>
-            <Button onClick={resetGame}>Restart Game</Button>
+            <Button onClick={resetGame} className="w-40">
+              Restart Game
+            </Button>
           </div>
         </div>
 

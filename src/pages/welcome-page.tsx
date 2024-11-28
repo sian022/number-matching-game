@@ -35,7 +35,7 @@ const WelcomePage = () => {
   };
 
   return (
-    <div className="flex justify-center items-center h-screen w-screen">
+    <div className="flex justify-center items-center h-screen w-screen p-4">
       <form
         className="flex flex-col items-center gap-4 bg-white p-10 rounded-lg shadow-md w-full max-w-md"
         onSubmit={handleStartGame}

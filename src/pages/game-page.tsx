@@ -1,32 +1,25 @@
-import { NumberCard } from "@/components/number-card";
-import { useState } from "react";
+import { GameBoard } from "@/components/game-board";
+import { Button } from "@/components/ui/button";
+import { useGameLogic } from "@/hooks/use-game-logic";
+import useNumberStore from "@/stores/number";
 
 const GamePage = () => {
-  const [state, setState] = useState("face-down");
-  const toggleState = () => {
-    setState((state) =>
-      state === "face-down"
-        ? "revealed"
-        : state === "revealed"
-        ? "matched"
-        : "face-down"
-    );
-  };
+  const maxNumber = useNumberStore((state) => state.maxNumber);
+  const { cards, turns, resetGame, handleCardClick } = useGameLogic({
+    maxNumber,
+    onGameComplete: () => {
+      alert("Game complete!");
+    },
+  });
 
   return (
-    <div className="flex items-center justify-center h-screen w-screen">
-      {/* TODO: Score tracking */}
+    <div className="flex flex-col items-center justify-center h-screen w-screen p-12">
+      <div className="flex w-full gap-4">
+        <span className="text-xl font-bold">Turns: {turns} </span>
+        <Button onClick={resetGame}>Restart game</Button>
+      </div>
 
-      {/* TODO: Reset button */}
-
-      {/* TODO: Game board with {maxNumber} cards */}
-      <NumberCard
-        number={1}
-        state={state}
-        onClick={() => {
-          toggleState();
-        }}
-      />
+      <GameBoard cards={cards} onCardClick={handleCardClick} />
     </div>
   );
 };

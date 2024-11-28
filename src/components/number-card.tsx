@@ -16,7 +16,7 @@ const NumberCard = ({ number, state, onClick, className }: NumberCardProps) => {
         "rounded-md shadow-sm",
         state === "face-down" &&
           "bg-primary/90 text-primary-foreground border-primary/70 cursor-pointer " +
-            "hover:bg-primary hover:shadow-md hover:scale-105 active:scale-95",
+            "hover:shadow-md hover:scale-105 active:scale-95",
         state === "revealed" &&
           "bg-card text-card-foreground border-primary/50 " +
             "hover:bg-accent cursor-pointer shadow-md",

@@ -16,11 +16,13 @@ const WelcomePage = () => {
 
     // Validate input to ensure it's a positive number
     const parsedNumber = parseInt(number, 10);
-    if (parsedNumber > 0) {
+    if (parsedNumber < 0) {
+      setError("Please enter a valid number greater than 0.");
+    } else if (parsedNumber > 100) {
+      setError("Please enter a number less than 100.");
+    } else {
       setMaxNumber(parsedNumber);
       navigate("/game");
-    } else {
-      setError("Please enter a valid number greater than 0.");
     }
   };
 
@@ -43,7 +45,8 @@ const WelcomePage = () => {
             Welcome to Number Matcher!
           </h1>
           <p className="text-gray-500 text-sm">
-            Enter a maximum number to start the game
+            Start at 1 and match all numbers up to your chosen maximum in the
+            fewest turns.
           </p>
         </div>
 
@@ -52,12 +55,12 @@ const WelcomePage = () => {
             htmlFor="maxNumber"
             className="block text-sm font-medium text-gray-700"
           >
-            Maximum Number
+            Enter a number
           </label>
 
           <Input
             id="maxNumber"
-            placeholder="Enter a maximum number"
+            placeholder="Enter a number"
             type="number"
             value={number}
             onChange={handleNumberChange}

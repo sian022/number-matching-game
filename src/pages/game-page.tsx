@@ -10,11 +10,20 @@ import { Navigate, useNavigate } from "react-router-dom";
 const GamePage = () => {
   const navigate = useNavigate();
   const maxNumber = useNumberStore((state) => state.maxNumber);
+
   const [isDialogOpen, setIsDialogOpen] = useState(false);
 
   const handleCongratulations = useCallback(() => {
     setIsDialogOpen(true);
   }, []);
+
+  const handleClose = useCallback(() => {
+    setIsDialogOpen(false);
+  }, []);
+
+  const handleBackToWelcome = useCallback(() => {
+    navigate("/");
+  }, [navigate]);
 
   const { cards, turns, resetGame, handleCardClick } = useGameLogic({
     maxNumber,
@@ -25,34 +34,33 @@ const GamePage = () => {
     return <Navigate to="/" />;
   }
 
-  const onClose = () => setIsDialogOpen(false);
-
-  const handleBackToWelcome = () => navigate("/");
-
   return (
     <>
       <CongratsDialog
         turns={turns}
         open={isDialogOpen}
-        onClose={onClose}
+        onClose={handleClose}
         resetGame={resetGame}
         backToWelcome={handleBackToWelcome}
       />
 
-      <div className="flex flex-col items-center h-screen max-w-screen-xl gap-6 m-auto p-8">
-        <div className="flex w-full gap-4 items-center justify-between">
-          <span className="text-xl font-bold">Turns: {turns}</span>
-
-          <div className="flex gap-4">
+      <div className="container max-w-screen-xl mx-auto px-4 py-8 h-screen flex flex-col">
+        <div className="flex items-center justify-between mb-6">
+          <div className="flex items-center gap-4">
+            <span className="text-xl font-semibold">
+              Turns:
+              <span className="ml-2">{turns}</span>
+            </span>
+          </div>
+          <div className="flex gap-2">
             <Button variant="outline" onClick={handleBackToWelcome}>
               Back to Welcome
             </Button>
-
             <Button onClick={resetGame}>Restart Game</Button>
           </div>
         </div>
 
-        <Card className="flex-1 w-full flex justify-center items-center p-4">
+        <Card className="flex-1 w-full flex items-center justify-center p-4 shadow-md">
           <GameBoard cards={cards} onCardClick={handleCardClick} />
         </Card>
       </div>

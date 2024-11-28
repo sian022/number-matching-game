@@ -1,12 +1,12 @@
 import { useState, useEffect, useCallback } from "react";
 
-export type StatefulCard = {
+type StatefulCard = {
   id: number;
   value: number;
   state: "face-down" | "revealed" | "matched";
 };
 
-export const useGameLogic = ({
+const useGameLogic = ({
   maxNumber,
   onGameComplete,
 }: {
@@ -106,9 +106,9 @@ export const useGameLogic = ({
 
   // Check if the game is completed
   useEffect(() => {
-    const isGameCompleted = Array.from(cards.values()).every(
-      (card) => card.state === "matched"
-    );
+    const isGameCompleted =
+      Array.from(cards.values()).every((card) => card.state === "matched") &&
+      cards.size > 0;
 
     if (isGameCompleted) {
       setTimeout(() => {
@@ -124,3 +124,6 @@ export const useGameLogic = ({
     handleCardClick,
   };
 };
+
+export { type StatefulCard };
+export { useGameLogic };

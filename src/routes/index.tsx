@@ -1,11 +1,11 @@
-import GamePage from "@/pages/game-page";
-import StartPage from "@/pages/start-page";
+import { GamePage } from "@/pages/game-page";
+import { WelcomePage } from "@/pages/welcome-page";
 import { createBrowserRouter } from "react-router-dom";
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <StartPage />,
+    element: <WelcomePage />,
   },
   {
     path: "/game",

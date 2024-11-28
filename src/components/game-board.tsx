@@ -8,7 +8,7 @@ type GameBoardProps = {
 
 const GameBoard = ({ cards, onCardClick }: GameBoardProps) => {
   return (
-    <div className="grid grid-cols-3 gap-4">
+    <div className="flex flex-wrap gap-4 p-4 w-full justify-center">
       {Array.from(cards.values()).map((card) => (
         <NumberCard
           key={card.id}

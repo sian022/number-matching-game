@@ -5,9 +5,10 @@ type NumberCardProps = {
   number: number;
   state: string | "face-down" | "revealed" | "matched";
   onClick: () => void;
+  className?: string;
 };
 
-const NumberCard = ({ number, state, onClick }: NumberCardProps) => {
+const NumberCard = ({ number, state, onClick, className }: NumberCardProps) => {
   return (
     <Card
       className={cn(
@@ -15,7 +16,8 @@ const NumberCard = ({ number, state, onClick }: NumberCardProps) => {
         state === "face-down" &&
           "bg-gray-500 text-transparent cursor-pointer hover:scale-105",
         state === "revealed" && "bg-white text-black cursor-pointer",
-        state === "matched" && "bg-green-200 text-black cursor-default"
+        state === "matched" && "bg-green-200 text-black cursor-default",
+        className
       )}
       onClick={state === "face-down" ? onClick : undefined}
     >
